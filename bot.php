@@ -41,17 +41,17 @@ if (!is_null($events['events'])) {
 			$result = curl_exec($ch);
 			curl_close($ch);
 			
-				$ch = curl_init();// init curl
-				curl_setopt($ch, CURLOPT_URL,"http://dolphin-solution.com/mcs/acquire.aspx");
-				curl_setopt($ch, CURLOPT_POST, 1);// set post data to true
-				curl_setopt($ch, CURLOPT_POSTFIELDS,"?password=DSCMCS&value=Lxxx");// post data
+				$ci = curl_init();// init curl
+				curl_setopt($ci, CURLOPT_URL,"http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=");
+				curl_setopt($ci, CURLOPT_POST, 1);// set post data to true
+				curl_setopt($ci, CURLOPT_POSTFIELDS,"Lxxx");// post data
 
 				// receive server response ...
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);// gives you a response from the server
+				curl_setopt($ci, CURLOPT_RETURNTRANSFER, true);// gives you a response from the server
 
-				$response = curl_exec ($ch);// response it ouputed in the response var
+				$response = curl_exec ($ci);// response it ouputed in the response var
 
-				curl_close ($ch);// close curl connection
+				curl_close ($ci);// close curl connection
 
 			echo $result . "\r\n";
 		}
