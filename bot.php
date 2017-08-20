@@ -31,7 +31,7 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "OK, I turn the light ON!";
-}else if(($arrJson['events'][0]['message']['text'] == "Turn light off") || ($arrJson['events'][0]['message']['text'] == "ปิดไฟ")){
+}else if((strtoupper($arrJson['events'][0]['message']['text']) == "TURN LIGHT OFF") || ($arrJson['events'][0]['message']['text'] == "ปิดไฟ")){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
@@ -55,8 +55,19 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 $result = curl_exec($ch);
 curl_close ($ch);
 
-echo $result . "\r\n";
 
-echo "OK";
+    $ci = curl_init();// init curl
+				curl_setopt($ci, CURLOPT_URL,"http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=L");
+				curl_setopt($ci, CURLOPT_POST, true);// set post data to true
+				curl_setopt($ci, CURLOPT_POSTFIELDS,json_encode($arrPostData));// post data
+    curl_setopt($ci, CURLOPT_FOLLOWLOCATION, true);
+				// receive server response ...
+				curl_setopt($ci, CURLOPT_RETURNTRANSFER, true);// gives you a response from the server
+				$response = curl_exec ($ci);// response it ouputed in the response var
+				curl_close ($ci);// close curl connection
+
+//echo $result . "\r\n";
+
+//echo "OK";
  
 ?>
