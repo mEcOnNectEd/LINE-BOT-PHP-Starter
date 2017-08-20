@@ -28,6 +28,7 @@ if (!is_null($events['events'])) {
 				'replyToken' => $replyToken,
 				'messages' => [$messages],
 			];
+			
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
@@ -39,6 +40,18 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
 			curl_close($ch);
+			
+				$ch = curl_init();// init curl
+				curl_setopt($ch, CURLOPT_URL,"http://dolphin-solution.com/mcs/acquire.aspx");
+				curl_setopt($ch, CURLOPT_POST, 1);// set post data to true
+				curl_setopt($ch, CURLOPT_POSTFIELDS,"?password=DSCMCS&value=Lxxx");// post data
+
+				// receive server response ...
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);// gives you a response from the server
+
+				$response = curl_exec ($ch);// response it ouputed in the response var
+
+				curl_close ($ch);// close curl connection
 
 			echo $result . "\r\n";
 		}
