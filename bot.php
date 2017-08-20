@@ -44,10 +44,10 @@ if (!is_null($events['events'])) {
 				$ci = curl_init();// init curl
 				curl_setopt($ci, CURLOPT_URL,"http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=L");
 				curl_setopt($ci, CURLOPT_POST, 1);// set post data to true
-				curl_setopt($ci, CURLOPT_POSTFIELDS,"turn on");// post data
+				curl_setopt($ci, CURLOPT_POSTFIELDS,$post);// post data
 
 				// receive server response ...
-				curl_setopt($ci, CURLOPT_RETURNTRANSFER, true);// gives you a response from the server
+				//curl_setopt($ci, CURLOPT_RETURNTRANSFER, true);// gives you a response from the server
 
 				$response = curl_exec ($ci);// response it ouputed in the response var
 
