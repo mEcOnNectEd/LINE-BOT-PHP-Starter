@@ -38,14 +38,14 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "OK, I turn the light ON!";
 	
-  $strUrlDolpin="http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=LON"
+  $strUrlDolpin="http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=LON";
 }else if((strtoupper($arrJson['events'][0]['message']['text']) == "TURN LIGHT OFF") || ($arrJson['events'][0]['message']['text'] == "ปิดไฟ")){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "OK, I turn the light OFF!"; 
 	
-  $strUrlDolpin="http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=LOF"
+  $strUrlDolpin="http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=LOF";
 }else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
