@@ -17,36 +17,42 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "สวัสดี ID คุณคือ ".$arrJson['events'][0]['source']['userId'];
 	
+  $strUrlDolpin="NDF";		
 }else if(( $arrJson['events'][0]['message']['text'] == "ชื่อไร")|| ( $arrJson['events'][0]['message']['text'] == "ชื่ออะไร") || ( $arrJson['events'][0]['message']['text'] == "Your name")){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "Skynet";
   
-  $arrWebHookData = array();
-  //$arrWebHookData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrWebHookData['messages'][0]['type'] = "text";
-  $arrWebHookData['messages'][0]['text'] = "NDF";
+  $strUrlDolpin="NDF";
 }else if($arrJson['events'][0]['message']['text'] == "ทำอะไรได้บ้าง"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ฉันทำอะไรไม่ได้เลย คุณต้องสอนฉันอีกเยอะ";
+	  
+  $strUrlDolpin="NDF";
 }else if((strtoupper($arrJson['events'][0]['message']['text']) == "TURN LIGHT ON") || ($arrJson['events'][0]['message']['text'] == "เปิดไฟ")){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "OK, I turn the light ON!";
+	
+  $strUrlDolpin="http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=LON"
 }else if((strtoupper($arrJson['events'][0]['message']['text']) == "TURN LIGHT OFF") || ($arrJson['events'][0]['message']['text'] == "ปิดไฟ")){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "OK, I turn the light OFF!"; 
+	
+  $strUrlDolpin="http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=LOF"
 }else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "Sorry, I couldn't help with that!";
+  
+  $strUrlDolpin="NDF";
 }
  
  
@@ -61,22 +67,23 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 $result = curl_exec($ch);
 curl_close ($ch);
 
-//if ($arrPostData['messages'][0]['text'] != "Sorry, I couldn't help with that!")
-  $arrWebHookData = array();
-  //$arrWebHookData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrWebHookData['messages'][0]['type'] = "text";
-  $arrWebHookData['messages'][0]['text'] = "NDF";
-    $ci = curl_init();// init curl
-				curl_setopt($ci, CURLOPT_URL,"http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=L");
-curl_setopt($ci, CURLOPT_HEADER, false);
-				curl_setopt($ci, CURLOPT_POST, true);// set post data to true
-				curl_setopt($ci, CURLOPT_POSTFIELDS,json_encode($arrWebHookData));// post data
-    curl_setopt($ci, CURLOPT_FOLLOWLOCATION, true);
-				// receive server response ...
-				curl_setopt($ci, CURLOPT_RETURNTRANSFER, true);// gives you a response from the server
-				$response = curl_exec ($ci);// response it ouputed in the response var
-				curl_close ($ci);// close curl connection
-
+if ($strUrlDolpin != "NDF"){
+	$arrWebHookData = array();
+	$arrWebHookData['replyToken'] = $arrJson['events'][0]['replyToken'];
+	$arrWebHookData['messages'][0]['type'] = "text";
+	$arrWebHookData['messages'][0]['text'] = "Dolphin";
+	
+	$ci = curl_init();// init curl
+	curl_setopt($ci, CURLOPT_URL,$strUrlDolpin);
+	curl_setopt($ci, CURLOPT_HEADER, false);
+	curl_setopt($ci, CURLOPT_POST, true);// set post data to true
+	curl_setopt($ci, CURLOPT_POSTFIELDS,json_encode($arrWebHookData));// post data
+    	curl_setopt($ci, CURLOPT_FOLLOWLOCATION, true);
+	// receive server response ...
+	curl_setopt($ci, CURLOPT_RETURNTRANSFER, true);// gives you a response from the server
+	$response = curl_exec ($ci);// response it ouputed in the response var
+	curl_close ($ci);// close curl connection
+}
 //echo $result . "\r\n";
 
 //echo "OK";
