@@ -139,7 +139,7 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
 
 
 //Air Conditioning 
-}else if((strtoupper($arrJson['events'][0]['message']['text']) == "TURN ON AC") || ($arrJson['events'][0]['message']['text'] == "เปิดแอร์")){
+}else if((strtoupper($arrJson['events'][0]['message']['text']) == "TURN ON AIR CONDITIONER") || ($arrJson['events'][0]['message']['text'] == "เปิดแอร์")){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
@@ -147,7 +147,7 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
 	
   $strUrlDolpin="http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=AON";
 
-}else if((strtoupper($arrJson['events'][0]['message']['text']) == "TURN OFF AC") || ($arrJson['events'][0]['message']['text'] == "ปิดแอร์")){
+}else if((strtoupper($arrJson['events'][0]['message']['text']) == "TURN OFF AIR CONDITIONER") || ($arrJson['events'][0]['message']['text'] == "ปิดแอร์")){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
@@ -156,7 +156,7 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $strUrlDolpin="http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=AOFF";
 
 
-}else if((strtoupper($arrJson['events'][0]['message']['text']) == "SET TEMPERATURE 18 DEGREE") || ($arrJson['events'][0]['message']['text'] == "ตั้งอุณหภูมิ 18")){
+}else if((strtoupper($arrJson['events'][0]['message']['text']) == "SET TEMPERATURE 18 DEGREES") || ($arrJson['events'][0]['message']['text'] == "ตั้งอุณหภูมิ 18")){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
@@ -164,7 +164,7 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
 	
   $strUrlDolpin="http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=A18";
 
-}else if((strtoupper($arrJson['events'][0]['message']['text']) == "SET TEMPERATURE 25 DEGREE") || ($arrJson['events'][0]['message']['text'] == "ตั้งอุณหภูมิ 25")){
+}else if((strtoupper($arrJson['events'][0]['message']['text']) == "SET TEMPERATURE 25 DEGREES") || ($arrJson['events'][0]['message']['text'] == "ตั้งอุณหภูมิ 25")){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
@@ -172,7 +172,7 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
 	
   $strUrlDolpin="http://dolphin-solution.com/mcs/acquire.aspx?password=DSCMCS&value=A25";
 
-}else if((strtoupper($arrJson['events'][0]['message']['text']) == "SET TEMPERATURE 30 DEGREE") || ($arrJson['events'][0]['message']['text'] == "ตั้งอุณหภูมิ 30")){
+}else if((strtoupper($arrJson['events'][0]['message']['text']) == "SET TEMPERATURE 30 DEGREES") || ($arrJson['events'][0]['message']['text'] == "ตั้งอุณหภูมิ 30")){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
